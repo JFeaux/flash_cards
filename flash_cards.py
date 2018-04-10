@@ -194,7 +194,6 @@ class Options:
             if self.focus <= max_int:
                 self.max_int = max_int
                 self.frame.destroy()
-                print 'hey'
         except (AttributeError, ValueError):
             pass
         
@@ -214,15 +213,16 @@ def main():
     ## background color
     root.configure(background='white')
 
-    options = Options(root)
-    root.wait_window(options.frame)
+    while True:
+        options = Options(root)
+        root.wait_window(options.frame)
 
-    problems = get_problems(options)
-    if options.shuffle:
-        np.random.shuffle(problems)
-    for i in range(len(problems)):
-        Q = FlashCard(root, problems[i][0])
-        A = FlashCard(root, problems[i][1])
+        problems = get_problems(options)
+        if options.shuffle:
+            np.random.shuffle(problems)
+        for i in range(len(problems)):
+            Q = FlashCard(root, problems[i][0])
+            A = FlashCard(root, problems[i][1])
 
     root.mainloop()
 
