@@ -23,13 +23,6 @@ operators = {
     }
 
 
-class Args:
-    def __init__(self):
-        pass
-
-    def add_argument(self, name, value):
-        setattr(self, name, value)
-
 def get_problems(args):
     problems = []
     if args.focus:
@@ -82,7 +75,7 @@ class Options:
         self.frame = tk.Frame(parent)
 
         self.shuffle = 1
-        self.fact_type = 'add'
+        self.fact_type = 'multiply'
         self.focus = 0
         self.max_int = tk.IntVar()
         self.max_int.set(12)
@@ -114,7 +107,6 @@ class Options:
         self.type_buttons = [0 for i in range(4)]
         self.type_buttons[0] = tk.Button(type_frame, 
                                text='+',
-                               state=tk.DISABLED,
                                disabledforeground='blue',
                                command=lambda: self.set_type(0))
         self.type_buttons[1] = tk.Button(type_frame, 
@@ -124,7 +116,9 @@ class Options:
         self.type_buttons[2] = tk.Button(type_frame, 
                                text=u'\u00D7',
                                disabledforeground='blue',
-                               command=lambda: self.set_type(2))
+                               command=lambda: self.set_type(2),
+                               state=tk.DISABLED
+                               )
         self.type_buttons[3] = tk.Button(type_frame, 
                                text=u'\u00F7',
                                disabledforeground='blue',
